@@ -19,7 +19,11 @@ if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 echo "Hello, {$_SESSION['userdata']['username']}!";
 
 // A DB connection is also provided.
-$db_conn->query("SELECT * FROM projects");
+$db_conn->query("select * from projects");
+
+// ...but don't use query() if you're building a query from user input - use a prepared statement to protect against SQL injection!
+$projectStmt = $db_conn->prepare("select * from projects where name like :name");
+$projectResult = $projectStmt->execute([':name' => $_GET['projectname']]);
 
 ?>
 
