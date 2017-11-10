@@ -16,7 +16,9 @@ if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 }
 
 // Now the page is all yours. You can assume that someone is logged in; their information is stored in $_SESSION['userdata'].
-echo "Hello, {$_SESSION['userdata']['username']}!";
+// Also, any time you display data coming out of the database that has ANY possibility of containing HTML special characters,
+// you need to call htmlspecialchars() so that it can't mess up your page (or inject a malicious script...)
+echo "Hello, " . htmlspecialchars($_SESSION['userdata']['username']) . "!";
 
 // A DB connection is also provided.
 $db_conn->query("select * from projects");
