@@ -2,10 +2,15 @@
 // First thing is to set the variables that the header script will use.
 // You can provide these or not as necessary - the header script will use default values if you don't set them here.
 $page_title = 'Example Page - Project Tracker';
-$css_files = ['/css/your-special-stylesheet.css', '/css/your-stylesheet-2.css'];
-$js_files = ['your_script.js', 'your_script2.js'];
+
 // Note: the header script automatically includes site-wide CSS and JS, regardless of what you put in $css_files and $js_files.
 // Use these arrays only to add page-specific CSS and JS.
+$css_files = ['/css/your-special-stylesheet.css', '/css/your-stylesheet-2.css'];
+$js_files = ['your_script.js', 'your_script2.js'];
+
+// By default, login is required to display a page. If login is not required, set this to false.
+// This shouldn't be necessary very often.
+$login_required = false;
 
 // Next step: include the header script using require():
 if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
@@ -21,10 +26,10 @@ if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 echo "Hello, " . htmlspecialchars($_SESSION['userdata']['username']) . "!";
 
 // A DB connection is also provided.
-$db_conn->query("select * from projects");
+$dbh->query("select * from projects");
 
 // ...but don't use query() if you're building a query from user input - use a prepared statement to protect against SQL injection!
-$projectStmt = $db_conn->prepare("select * from projects where name like :name");
+$projectStmt = $dbh->prepare("select * from projects where name like :name");
 $projectResult = $projectStmt->execute([':name' => $_GET['projectname']]);
 
 ?>

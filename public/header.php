@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-if(!require($_SERVER['DOCUMENT_ROOT'] . '/../php/login.php'))
+require($_SERVER['DOCUMENT_ROOT'] . '/../php/database.php');
+
+if(!isset($login_required)) $login_required = true;
+
+if($login_required && !require($_SERVER['DOCUMENT_ROOT'] . '/../php/login.php'))
 {
 	return;
 }
@@ -29,12 +33,12 @@ if(isset($js_files))
 	}
 	foreach($js_files_master as $js_file)
 	{
-		echo "<script type='text/javascript' src='{$js_file}></script>\r\n";
+		echo "<script type='text/javascript' src='{$js_file}'></script>\r\n";
 	}
 	?>
 </head>
 
 <body>
 <div id="header">
-<h1>BNT Project Tracker</h1>
+<h1><a href="/index.php">BNT Project Tracker</a></h1>
 </div>
