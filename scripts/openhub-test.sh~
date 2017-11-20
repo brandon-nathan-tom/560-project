@@ -1,1 +1,0 @@
-curl --fail -s "https://www.openhub.net/accounts/$EMAIL_MD5.xml?v=1&api_key=$API_KEY" | sed -n 's/ *<\(.*\)>\(.*\)<\/\1>$/\1: \2/ p'
