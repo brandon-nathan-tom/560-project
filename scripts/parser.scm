@@ -4,30 +4,36 @@
 (use-modules (sxml simple))
 (use-modules (ice-9 pretty-print))
 
+(define verbose #t)
+;(define verbose #f)
+
+(define verbose-display
+  (lambda (thing)
+	(if verbose
+		(display thing)
+		)))
+
 (define process-response
   (lambda (response)
 	"doc for process-response"
-	(display "processing response")
-	(newline)
+	(verbose-display "processing response\n")
 	(let ((root (car response)))
-	 (display
+	 (verbose-display
 	  (string-append
 	   "root element:'" (symbol->string root) "'\n"))
 	 (if (eq? root 'response)
 		 ((lambda ()
-			(display "found response - moving to result")
-			(newline)
+			(verbose-display "found response - moving to result\n")
 			(process-result response)))
-		 (display "not response.\n"))
+		 (verbose-display "not response.\n"))
 	 )
-	(newline)
 	))
 
 (define process-result
   (lambda (result)
 	"doc for process-result"
-	(display "processing result")
-	(newline)))
+	(verbose-display "processing result\n")
+	))
 
 (define iterate-data
   (lambda (data)
@@ -44,8 +50,6 @@
 (define data-port (open-file "/home/niebie/sc/560-project/scripts/sample-data.xml" "r"))
 (define sxml-data (xml->sxml data-port))
 
-(newline)
-(display "output:")
-(newline)
+(verbose-display "\noutput:\n")
 (iterate-data sxml-data)
-(newline)
+
