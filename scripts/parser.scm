@@ -15,17 +15,10 @@
 (define process-response
   (lambda (response)
 	"doc for process-response"
-	;; (verbose-display "-processing response-\n")
 	(let ((root (car response)))
-	 ;; (verbose-display
-	 ;;  (string-append
-	 ;;   "root element:'" (symbol->string root) "'\n"))
 	 (if (eq? root 'response)
 		 (begin
-			;; (verbose-display "found response - moving to result\n")
-			(process-result (cdr response)))
-		 ;; (verbose-display "not response.\n")
-		 ))))
+			(process-result (cdr response)))))))
 
 (define get-data
   (lambda (thing)
@@ -103,8 +96,8 @@
 (define data-port (open-file "/home/niebie/sc/560-project/scripts/sample-data.xml" "r"))
 (define sxml-data (xml->sxml data-port))
 
+;; code to save output file
 ;; (define output-port (open-file "/home/niebie/sc/560-project/scripts/sample-data.scm" "w"))
-
 ;; (write sxml-data output-port)
 
 (verbose-display "\noutput:\n")
