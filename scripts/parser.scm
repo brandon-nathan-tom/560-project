@@ -92,25 +92,6 @@
 				(process-result (car result))
 				(process-result (cdr result))))))))
 
-(define process-result-crap
-  (lambda (result)
-	"doc for process-result-crap"
-	(verbose-display "\n-processing result-\n")
-	(when (list? result)
-	  (let ((root (car result)))
-		(begin
-		  (verbose-display (string-append "'" (get-data result) "'\n"))
-		  (verbose-display result)
-		  (if (eq? root 'result)
-			  (begin
-				(verbose-display "found result\n")
-				#t)
-			  (begin
-				(when (list? result)
-				 (unless (process-result (car result))
-				   (process-result (cdr result))))
-				#f)))))))
-
 (define iterate-data
   (lambda (data)
 	"doc for iterate-data"
