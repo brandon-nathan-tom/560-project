@@ -28,6 +28,18 @@
 			(symbol->string thing)
 			thing))))
 
+(define print-data
+  (lambda (data filter outer)
+	(when (eq? data filter)
+	  (let ((check (cdr outer)))
+		(when (and (list? check)
+				   (> (length check) 0))
+		  (verbose-display (symbol->string data))
+		  (verbose-display "=")
+		  (verbose-display (car (cdr outer)))
+		  (verbose-display "\n")))
+	  )))
+
 (define extract-project-info
   (lambda (project)
 	"asdf"
@@ -40,17 +52,19 @@
 		  (let ((inner (car cur)))
 			(when (list? inner)
 			  (let ((sym (car inner)))
-				(verbose-display (symbol->string sym))
-				(verbose-display "=")
-				(verbose-display (cdr inner))
-				(verbose-display "\n")
+				(print-data sym 'id inner)
+				(print-data sym 'name inner)
+				(print-data sym 'description inner)
+				(print-data sym 'homepage_url inner)
+				;; licenses
+				;; links
 				))))
 		(set! cur (cdr cur))))))
 
 (define iterate-result-data
   (lambda (result)
 	"doc"
-	(verbose-display "\n-iterating result data-\n")
+	;;(verbose-display "\n-iterating result data-\n")
 	;; cdr through result - every top level list is a project
 	(when (> (length result) 0)
 	  (let ((child (cdr result)))
@@ -62,7 +76,7 @@
 (define extract-result-data
   (lambda (result)
 	"doc"
-	(verbose-display "\n-extracting result data-\n")
+	;; (verbose-display "\n-extracting result data-\n")
 	(iterate-result-data result)
 	(when (and (list? result)
 			   (> (length result) 0))
