@@ -1,75 +1,78 @@
-DROP TABLE IF EXISTS websites;
-DROP TABLE IF EXISTS watchables;
-DROP TABLE IF EXISTS watchables_sites;
-DROP TABLE IF EXISTS organizations;
-DROP TABLE IF EXISTS contributors;
-DROP TABLE IF EXISTS projects;
-DROP TABLE IF EXISTS download_mirrors;
-DROP TABLE IF EXISTS org_members;
-DROP TABLE IF EXISTS project_contributors;
-DROP TABLE IF EXISTS licenses;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS user_watched_items;
+DROP TABLE IF EXISTS websites CASCADE;
+DROP TABLE IF EXISTS watchables CASCADE;
+DROP TABLE IF EXISTS watchables_sites CASCADE;
+DROP TABLE IF EXISTS organizations CASCADE;
+DROP TABLE IF EXISTS contributors CASCADE;
+DROP TABLE IF EXISTS projects CASCADE;
+DROP TABLE IF EXISTS download_mirrors CASCADE;
+DROP TABLE IF EXISTS org_members CASCADE;
+DROP TABLE IF EXISTS project_contributors CASCADE;
+DROP TABLE IF EXISTS licenses CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS user_watched_items CASCADE;
 
 CREATE TABLE websites (
 	id	int NOT NULL,
 	name	varchar NOT NULL,
 	uri	varchar NOT NULL,
 	descr	varchar,
-	PRIMARY KEY(ID, name, uri),
+	PRIMARY KEY(id),
 	UNIQUE (uri)
 );
 
 CREATE TABLE watchables (
 	id	int NOT NULL,
-	PRIMARY KEY(ID)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE watchables_sites (
-	watchable_id	int NOT NULL REFERENCES(watchables.id),
-	site_id		int NOT NULL REFERENCES(websites.id)
+	watchable_id	int NOT NULL REFERENCES watchables(id),
+	site_id		int NOT NULL REFERENCES websites(id)
 );
 
 CREATE TABLE organizations (
-	id	int NOT NULL REFERENCES(watchables.id),
+	id	int NOT NULL REFERENCES watchables(id),
 	name	varchar NOT NULL,
-	email	varchar NOT NULL
+	email	varchar NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE contributors (
-	id	int NOT NULL REFERENCES(watchables.id),
+	id	int NOT NULL REFERENCES watchables(id),
 	name	varchar NOT NULL,
-	email	varchar NOT NULL
+	email	varchar NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE projects (
-	id		int NOT NULL REFERENCES(watchables.id),
+	id		int NOT NULL REFERENCES watchables(id),
 	name		varchar NOT NULL,
 	repo		varchar NOT NULL,
-	owner_id	int NOT NULL REFERENCES(organizations.id)
+	owner_id	int NOT NULL REFERENCES organizations(id),
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE download_mirrors (
-	project_id	int NOT NULL REFERENCES(projects.id),
-	site_id		int NOT NULL REFERENCES(websites.id)
+	project_id	int NOT NULL REFERENCES projects(id),
+	site_id		int NOT NULL REFERENCES websites(id)
 );
 
 CREATE TABLE org_members (
-	org_id		int NOT NULL REFERENCES(organizations.id),
-	contributor_id	int NOT NULL REFERENCES(contributors.id),
+	org_id		int NOT NULL REFERENCES organizations(id),
+	contributor_id	int NOT NULL REFERENCES contributors(id),
 	role		varchar
 );
 
 CREATE TABLE project_contributors (
-	project_id	int NOT NULL REFERENCES(projects.id),
-	contributor_id	int NOT NULL REFERENCES(contributors.id),
+	project_id	int NOT NULL REFERENCES projects(id),
+	contributor_id	int NOT NULL REFERENCES contributors(id),
 	role		varchar
 );
 
 CREATE TABLE licenses (
 	id		int NOT NULL,
 	name		varchar NOT NULL,
-	text_link	varchar NOT NULL REFERENCES(websites.id),
+	text_link	int NOT NULL REFERENCES websites(id),
 	UNIQUE(name, text_link),
 	PRIMARY KEY(id)
 );
@@ -81,10 +84,10 @@ CREATE TABLE users (
 	email		varchar NOT NULL,
 	pw_hash		varchar NOT NULL,
 	UNIQUE(nickname),
-	PRIMARY KEY(id, email)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE user_watched_items (
-	user_id		int NOT NULL REFERENCES(users.id),
-	watchable_id	int NOT NULL REFERENCES(watchables.id)
+	user_id		int NOT NULL REFERENCES users(id),
+	watchable_id	int NOT NULL REFERENCES watchables(id)
 );
