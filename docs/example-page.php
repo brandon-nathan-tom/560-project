@@ -15,9 +15,9 @@ $login_required = false;
 // Next step: include the header script using require():
 if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 {
-	// If the header script returns false, then there was a login or other error that the header script handled for you.
-	// Don't render any content or do anything.
-	return;
+    // If the header script returns false, then there was a login or other error that the header script handled for you.
+    // Don't render any content or do anything.
+    return;
 }
 
 // Now the page is all yours. You can assume that someone is logged in; their information is stored in $_SESSION['userdata'].

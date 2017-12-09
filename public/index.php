@@ -1,7 +1,8 @@
 <?php
+$js_files = ['/js/homepage.js'];
 if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 {
-	return;
+    return;
 }
 
 echo "Hello " . htmlspecialchars($_SESSION['userdata']['nickname']);

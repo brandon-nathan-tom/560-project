@@ -1,0 +1,25 @@
+<script>
+$( document ).ready(function () {
+    let tableData = [
+        { col1: 'C1Text', col2: 'C2Text' },
+        { col1: 'C1Text2', col2: 'C2Text2' },
+        { col1: 'C1Text3', col2: 'C2Text3' }
+    ];
+        
+    let keyMaps = {
+        cb: (rowData) => (rowData.col1 + rowData.col2)
+    };
+    
+    fillTable($('#test-table'), tableData, keyMaps);
+    
+});
+</script>
+
+<table id="test-table">
+<thead>
+    <tr><th data-sourcecol='col1'>Column 1</th><th data-sourcecol='col2'>Column 2</th><th data-sourcecol='cb'>Callback</th></tr>
+</thead>
+<tbody>
+    <!-- Will be filled by BNTLib. -->
+</tbody>
+</table>
