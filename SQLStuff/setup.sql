@@ -21,7 +21,7 @@ CREATE TABLE websites (
 );
 
 CREATE TABLE watchables (
-	id	int NOT NULL,
+	id	serial NOT NULL,
 	PRIMARY KEY(id)
 );
 
@@ -73,7 +73,7 @@ CREATE TABLE project_contributors (
 );
 
 CREATE TABLE licenses (
-	id		int NOT NULL,
+	id		serial NOT NULL,
 	name		varchar(40) NOT NULL,
 	text_link	int NOT NULL REFERENCES websites(id),
 	UNIQUE(name, text_link),
@@ -81,7 +81,7 @@ CREATE TABLE licenses (
 );
 
 CREATE TABLE users (
-	id		int NOT NULL,
+	id		serial NOT NULL,
 	nickname	varchar(40) NOT NULL,
 	name		varchar(40),
 	email		varchar(40) NOT NULL,

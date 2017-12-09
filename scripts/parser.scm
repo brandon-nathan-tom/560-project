@@ -107,7 +107,7 @@
 	  (let ((tmp (list-ref data i)))
 		(process-response tmp)))))
 
-(define data-port (open-file "/home/niebie/sc/560-project/scripts/sample-data.xml" "r"))
+(define data-port (open-file (string-append (getcwd) "/sample-data.xml") "r"))
 (define sxml-data (xml->sxml data-port))
 
 ;; code to save output file
