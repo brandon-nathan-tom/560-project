@@ -16,7 +16,8 @@ if(isset($css_files))
 {
 	$css_files_master = array_merge($css_files_master, $css_files);
 }
-$js_files_master = [];
+$js_files_master = ['/js/jquery-3.2.1.js',
+					'/js/bntlib.js'];
 if(isset($js_files))
 {
 	$js_files_master = array_merge($js_files_master, $js_files);
