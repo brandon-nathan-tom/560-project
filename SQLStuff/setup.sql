@@ -13,9 +13,9 @@ DROP TABLE IF EXISTS user_watched_items CASCADE;
 
 CREATE TABLE websites (
 	id	int NOT NULL,
-	name	varchar NOT NULL,
-	uri	varchar NOT NULL,
-	descr	varchar,
+	name	varchar(40) NOT NULL,
+	uri	varchar(250) NOT NULL,
+	descr	varchar(400),
 	PRIMARY KEY(id),
 	UNIQUE (uri)
 );
@@ -32,46 +32,49 @@ CREATE TABLE watchables_sites (
 
 CREATE TABLE organizations (
 	id	int NOT NULL REFERENCES watchables(id),
-	name	varchar NOT NULL,
-	email	varchar NOT NULL,
+	name	varchar(40) NOT NULL,
+	email	varchar(40) NOT NULL,
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE contributors (
 	id	int NOT NULL REFERENCES watchables(id),
-	name	varchar NOT NULL,
-	email	varchar NOT NULL,
+	name	varchar(40) NOT NULL,
+	email	varchar(40) NOT NULL,
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE projects (
 	id		int NOT NULL REFERENCES watchables(id),
-	name		varchar NOT NULL,
-	repo		varchar NOT NULL,
+	name		varchar(40) NOT NULL,
+	repo		varchar(2000) NOT NULL,
 	owner_id	int NOT NULL REFERENCES organizations(id),
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE download_mirrors (
 	project_id	int NOT NULL REFERENCES projects(id),
-	site_id		int NOT NULL REFERENCES websites(id)
+	site_id		int NOT NULL REFERENCES websites(id),
+	PRIMARY KEY(project_id, site_id)
 );
 
 CREATE TABLE org_members (
 	org_id		int NOT NULL REFERENCES organizations(id),
 	contributor_id	int NOT NULL REFERENCES contributors(id),
-	role		varchar
+	role		varchar(40),
+	PRIMARY KEY(org_id, contributor_id)
 );
 
 CREATE TABLE project_contributors (
 	project_id	int NOT NULL REFERENCES projects(id),
 	contributor_id	int NOT NULL REFERENCES contributors(id),
-	role		varchar
+	role		varchar(40),
+	PRIMARY KEY(project_id, contributor_id)
 );
 
 CREATE TABLE licenses (
 	id		int NOT NULL,
-	name		varchar NOT NULL,
+	name		varchar(40) NOT NULL,
 	text_link	int NOT NULL REFERENCES websites(id),
 	UNIQUE(name, text_link),
 	PRIMARY KEY(id)
@@ -79,10 +82,10 @@ CREATE TABLE licenses (
 
 CREATE TABLE users (
 	id		int NOT NULL,
-	nickname	varchar NOT NULL,
-	name		varchar,
-	email		varchar NOT NULL,
-	pw_hash		varchar NOT NULL,
+	nickname	varchar(40) NOT NULL,
+	name		varchar(40),
+	email		varchar(40) NOT NULL,
+	pw_hash		varchar(255) NOT NULL,
 	UNIQUE(nickname),
 	PRIMARY KEY(id)
 );
