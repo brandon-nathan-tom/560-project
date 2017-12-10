@@ -49,7 +49,7 @@ CREATE TABLE licenses (
 	id		serial NOT NULL,
 	name		varchar(40) NOT NULL,
 	text_link	int NOT NULL REFERENCES websites(id),
-	UNIQUE(name, text_link),
+	UNIQUE(name),
 	PRIMARY KEY(id)
 );
 
