@@ -44,6 +44,14 @@ CREATE TABLE contributors (
 	PRIMARY KEY(id)
 );
 
+CREATE TABLE licenses (
+	id		serial NOT NULL,
+	name		varchar(40) NOT NULL,
+	text_link	int NOT NULL REFERENCES websites(id),
+	UNIQUE(name, text_link),
+	PRIMARY KEY(id)
+);
+
 CREATE TABLE projects (
 	id		int NOT NULL REFERENCES watchables(id),
 	name		varchar(40) NOT NULL,
@@ -71,14 +79,6 @@ CREATE TABLE project_contributors (
 	contributor_id	int NOT NULL REFERENCES contributors(id),
 	role		varchar(40),
 	PRIMARY KEY(project_id, contributor_id)
-);
-
-CREATE TABLE licenses (
-	id		serial NOT NULL,
-	name		varchar(40) NOT NULL,
-	text_link	int NOT NULL REFERENCES websites(id),
-	UNIQUE(name, text_link),
-	PRIMARY KEY(id)
 );
 
 CREATE TABLE users (
