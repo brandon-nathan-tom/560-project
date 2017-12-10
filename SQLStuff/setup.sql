@@ -94,11 +94,11 @@ CREATE TABLE users (
 CREATE TABLE user_watched_items (
 	user_id		int NOT NULL REFERENCES users(id),
 	watchable_id	int NOT NULL REFERENCES watchables(id),
-	UNIQUE(user_id, watchable_id)
+	PRIMARY KEY(user_id, watchable_id)
 );
 
 create table project_licenses (
-    project_id int not null references projects(id),
+	project_id int not null references projects(id),
 	license_id int not null references licenses(id),
-	unique(project_id, license_id)
+	PRIMARY KEY(project_id, license_id)
 );
