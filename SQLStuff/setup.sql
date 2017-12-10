@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS user_watched_items CASCADE;
 
 CREATE TABLE websites (
-	id	int NOT NULL,
+	id	 serial NOT NULL,
 	name	varchar(40) NOT NULL,
 	uri	varchar(250) NOT NULL,
 	descr	varchar(400),
@@ -49,6 +49,7 @@ CREATE TABLE projects (
 	name		varchar(40) NOT NULL,
 	repo		varchar(2000) NOT NULL,
 	owner_id	int NOT NULL REFERENCES organizations(id),
+	license_id  int not null references licenses(id),
 	PRIMARY KEY(id)
 );
 
@@ -92,5 +93,6 @@ CREATE TABLE users (
 
 CREATE TABLE user_watched_items (
 	user_id		int NOT NULL REFERENCES users(id),
-	watchable_id	int NOT NULL REFERENCES watchables(id)
+	watchable_id	int NOT NULL REFERENCES watchables(id),
+	UNIQUE(user_id, watchable_id)
 );
