@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <status>success</status>
+  <items_returned>10</items_returned>
+  <items_available>10</items_available>
+  <first_item_position>0</first_item_position>
+  <result>
+    <org>
+      <name>Apache Software Foundation</name>
+      <url>https://www.openhub.net/orgs/apache.xml</url>
+      <html_url>https://www.openhub.net/orgs/apache</html_url>
+      <created_at>2012-10-22T11:26:41Z</created_at>
+      <updated_at>2017-12-08T13:41:53Z</updated_at>
+      <description>The Apache Software Foundation provides organizational, legal, and financial support for a broad range of open source software projects. The Foundation provides an established framework for intellectual property and financial contributions that simultaneously limits contributors potential legal exposure. Through a collaborative and meritocratic development process, Apache projects deliver enterprise-grade, freely available software products that attract large communities of users. The pragmatic Apache License makes it easy for all users, commercial and individual, to deploy Apache products.</description>
+      <homepage_url>https://www.apache.org/</homepage_url>
+      <url_name>apache</url_name>
+      <vanity_url>apache</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58062/apache_feather_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58062/apache_feather_small.png</small_logo_url>
+      <projects_count>368</projects_count>
+      <affiliated_committers>73</affiliated_committers>
+    </org>
+    <org>
+      <name>Wikimedia</name>
+      <url>https://www.openhub.net/orgs/wikimedia.xml</url>
+      <html_url>https://www.openhub.net/orgs/wikimedia</html_url>
+      <created_at>2012-10-22T17:09:12Z</created_at>
+      <updated_at>2017-12-08T14:11:59Z</updated_at>
+      <description>Wikimedia is a global movement whose mission is to bring free educational content to the world. Through various projects, chapters, and the support structure of the non-profit Wikimedia Foundation, we operate some of the largest collaboratively edited reference projects, including Wikipedia, a top-ten internet property.
+
+We develop dozens of free software projects open to contributors, including the MediaWiki content management system plus extensions, mobile apps, server infrastructure, analytics, fundraising and more.
+
+Most development is traditionally performed by volunteers. Personal "pet projects" are included as well, as long as their main developers are wikimedians (e.g. wikipedians) and they have some relation to the Wikimedia wikis.</description>
+      <homepage_url>http://www.wikimedia.org/</homepage_url>
+      <url_name>wikimedia</url_name>
+      <vanity_url>wikimedia</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/76671/Wikimedia-logo_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/76671/Wikimedia-logo_small.png</small_logo_url>
+      <projects_count>301</projects_count>
+      <affiliated_committers>18</affiliated_committers>
+    </org>
+    <org>
+      <name>KDE</name>
+      <url>https://www.openhub.net/orgs/kde.xml</url>
+      <html_url>https://www.openhub.net/orgs/kde</html_url>
+      <created_at>2012-10-22T11:27:00Z</created_at>
+      <updated_at>2017-12-06T03:12:59Z</updated_at>
+      <description>The KDE Community is an international technology team dedicated to creating a free and user-friendly computing experience, offering an advanced graphical desktop, a wide variety of applications for communication, work, education and entertainment and a platform to easily build new applications upon. We have a strong focus on finding innovative solutions to old and new problems, creating a vibrant atmosphere open for experimentation.</description>
+      <homepage_url>http://www.kde.org/</homepage_url>
+      <url_name>kde</url_name>
+      <vanity_url>kde</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58066/klogo-official-oxygen-128x128_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58066/klogo-official-oxygen-128x128_small.png</small_logo_url>
+      <projects_count>211</projects_count>
+      <affiliated_committers>30</affiliated_committers>
+    </org>
+    <org>
+      <name>Eclipse Foundation</name>
+      <url>https://www.openhub.net/orgs/eclipse.xml</url>
+      <html_url>https://www.openhub.net/orgs/eclipse</html_url>
+      <created_at>2012-10-22T11:26:52Z</created_at>
+      <updated_at>2017-11-04T22:31:27Z</updated_at>
+      <description>Eclipse is a community for individuals and organizations who wish to collaborate on commercially-friendly open source software. Its projects are focused on building an open development platform comprised of extensible frameworks, tools and runtimes for building, deploying and managing software across the lifecycle. The Eclipse Foundation is a not-for-profit, member supported corporation that hosts the Eclipse projects and helps cultivate both an open source community and an ecosystem of complementary products and services.</description>
+      <homepage_url>http://www.eclipse.org/</homepage_url>
+      <url_name>eclipse</url_name>
+      <vanity_url>eclipse</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/89669/eclipse64_med_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/89669/eclipse64_med_small.png</small_logo_url>
+      <projects_count>178</projects_count>
+      <affiliated_committers>1</affiliated_committers>
+    </org>
+    <org>
+      <name>NASA</name>
+      <url>https://www.openhub.net/orgs/nasa.xml</url>
+      <html_url>https://www.openhub.net/orgs/nasa</html_url>
+      <created_at>2017-06-01T20:41:15Z</created_at>
+      <updated_at>2017-12-07T20:47:07Z</updated_at>
+      <description>The National Aeronautics and Space Administration (NASA /ˈnæsə/) is an independent agency of the executive branch of the United States federal government responsible for the civilian space program, as well as aeronautics and aerospace research.</description>
+      <homepage_url>https://code.nasa.gov</homepage_url>
+      <url_name>nasa</url_name>
+      <vanity_url>nasa</vanity_url>
+      <type>Government</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/91240/meatball1_732_med.jpg</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/91240/meatball1_732_small.jpg</small_logo_url>
+      <projects_count>117</projects_count>
+      <affiliated_committers>0</affiliated_committers>
+    </org>
+    <org>
+      <name>Mozilla Foundation</name>
+      <url>https://www.openhub.net/orgs/mozilla.xml</url>
+      <html_url>https://www.openhub.net/orgs/mozilla</html_url>
+      <created_at>2012-10-22T11:27:03Z</created_at>
+      <updated_at>2017-12-08T08:52:00Z</updated_at>
+      <description>Mozilla is a proudly non-profit organization dedicated to keeping the power of the Web in people’s hands. We’re a global community of users, contributors and developers working to innovate on your behalf. When you use any Mozilla product you become a part of that community, helping us build a brighter future for the Web. The Mozilla project uses a community-based approach to create world-class open source software and to develop new types of collaborative activities. We create communities of people involved in making the Internet experience better for all of us.</description>
+      <homepage_url>https://www.mozilla.org/en-US/</homepage_url>
+      <url_name>mozilla</url_name>
+      <vanity_url>mozilla</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58070/mozilla_wordmark_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58070/mozilla_wordmark_small.png</small_logo_url>
+      <projects_count>95</projects_count>
+      <affiliated_committers>43</affiliated_committers>
+    </org>
+    <org>
+      <name>Open Web Application Security Project (OWASP)</name>
+      <url>https://www.openhub.net/orgs/OWASP.xml</url>
+      <html_url>https://www.openhub.net/orgs/OWASP</html_url>
+      <created_at>2013-08-26T14:39:35Z</created_at>
+      <updated_at>2017-12-08T11:38:24Z</updated_at>
+      <description>The Open Web Application Security Project (OWASP) is a 501(c)(3) worldwide not-for-profit charitable organization focused on improving the security of software. Our mission is to make software security visible, so that individuals and organizations worldwide can make informed decisions about true software security risks.</description>
+      <homepage_url>https://www.owasp.org/index.php/Main_Page</homepage_url>
+      <url_name>OWASP</url_name>
+      <vanity_url>OWASP</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/67986/OWASPlogo_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/67986/OWASPlogo_small.png</small_logo_url>
+      <projects_count>82</projects_count>
+      <affiliated_committers>7</affiliated_committers>
+    </org>
+    <org>
+      <name>Los Alamos National Lab</name>
+      <url>https://www.openhub.net/orgs/lanl.xml</url>
+      <html_url>https://www.openhub.net/orgs/lanl</html_url>
+      <created_at>2012-12-11T14:24:04Z</created_at>
+      <updated_at>2017-12-08T04:57:32Z</updated_at>
+      <description>LANL's mission is to develop and apply science and technology to ensure the safety, security, and reliability of the U.S. nuclear deterrent; reduce global threats; and solve other emerging national security and energy challenges.
+
+LANL is also home of many open-source applications used in science and engineering.</description>
+      <homepage_url>http://www.lanl.gov</homepage_url>
+      <url_name>lanl</url_name>
+      <vanity_url>lanl</vanity_url>
+      <type>Government</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/60150/lanl-logo-footer_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/60150/lanl-logo-footer_small.png</small_logo_url>
+      <projects_count>52</projects_count>
+      <affiliated_committers>8</affiliated_committers>
+    </org>
+    <org>
+      <name>Twitter</name>
+      <url>https://www.openhub.net/orgs/twitter.xml</url>
+      <html_url>https://www.openhub.net/orgs/twitter</html_url>
+      <created_at>2012-10-22T17:14:59Z</created_at>
+      <updated_at>2017-11-03T12:29:04Z</updated_at>
+      <description>Twitter is built on open source software, from the back-end to the front-end. Twitter engineers use, contribute to and release a lot of open source software. We of the Twitter Open Source Program Office support a variety of open source organizations and are grateful to the open source community for their contributions, and want to maintain our healthy, reciprocal relationship.</description>
+      <homepage_url>https://twitter.com/twitteross</homepage_url>
+      <url_name>twitter</url_name>
+      <vanity_url>twitter</vanity_url>
+      <type>Commercial</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58086/twitter-bird-light-bgs_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58086/twitter-bird-light-bgs_small.png</small_logo_url>
+      <projects_count>51</projects_count>
+      <affiliated_committers>8</affiliated_committers>
+    </org>
+    <org>
+      <name>Atlassian</name>
+      <url>https://www.openhub.net/orgs/atlassian.xml</url>
+      <html_url>https://www.openhub.net/orgs/atlassian</html_url>
+      <created_at>2012-10-22T11:26:42Z</created_at>
+      <updated_at>2017-12-08T02:58:03Z</updated_at>
+      <description>Software to plan, collaborate, code, and service. Built for teams.</description>
+      <homepage_url>https://www.atlassian.com/</homepage_url>
+      <url_name>atlassian</url_name>
+      <vanity_url>atlassian</vanity_url>
+      <type>Commercial</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/88399/charlie-rgb-cyan-small_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/88399/charlie-rgb-cyan-small_small.png</small_logo_url>
+      <projects_count>50</projects_count>
+      <affiliated_committers>4</affiliated_committers>
+    </org>
+  </result>
+</response>
