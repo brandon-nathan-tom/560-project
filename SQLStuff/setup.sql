@@ -34,7 +34,9 @@ CREATE TABLE watchables_sites (
 CREATE TABLE organizations (
 	id	int NOT NULL REFERENCES watchables(id),
 	name	varchar(40) NOT NULL,
-	email	varchar(40) NOT NULL,
+	homepage	varchar(40) NOT NULL,
+	short_description varchar(40) NOT NULL,
+	description varchar(2000) NOT NULL,
 	PRIMARY KEY(id)
 );
 
@@ -58,6 +60,8 @@ CREATE TABLE projects (
 	name		varchar(40) NOT NULL,
 	repo		varchar(2000) NOT NULL,
 	owner_id	int NOT NULL REFERENCES organizations(id),
+	short_description varchar(40) NOT NULL,
+	description varchar(2000) NOT NULL,
 	PRIMARY KEY(id)
 );
 
