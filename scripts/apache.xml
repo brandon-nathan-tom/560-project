@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <status>success</status>
+  <result>
+    <org>
+      <name>Apache Software Foundation</name>
+      <url>https://www.openhub.net/orgs/apache.xml</url>
+      <html_url>https://www.openhub.net/orgs/apache</html_url>
+      <created_at>2012-10-22T11:26:41Z</created_at>
+      <updated_at>2017-12-08T13:41:53Z</updated_at>
+      <description>The Apache Software Foundation provides organizational, legal, and financial support for a broad range of open source software projects. The Foundation provides an established framework for intellectual property and financial contributions that simultaneously limits contributors potential legal exposure. Through a collaborative and meritocratic development process, Apache projects deliver enterprise-grade, freely available software products that attract large communities of users. The pragmatic Apache License makes it easy for all users, commercial and individual, to deploy Apache products.</description>
+      <homepage_url>https://www.apache.org/</homepage_url>
+      <url_name>apache</url_name>
+      <vanity_url>apache</vanity_url>
+      <type>Non-Profit</type>
+      <medium_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58062/apache_feather_med.png</medium_logo_url>
+      <small_logo_url>https://s3.amazonaws.com/cloud.ohloh.net/attachments/58062/apache_feather_small.png</small_logo_url>
+      <infographic_details>
+        <outside_committers>798</outside_committers>
+        <outside_committers_commits>587189</outside_committers_commits>
+        <projects_having_outside_commits>313</projects_having_outside_commits>
+        <portfolio_projects>368</portfolio_projects>
+        <affiliators>73</affiliators>
+        <affiliators_committing_to_portfolio_projects>69</affiliators_committing_to_portfolio_projects>
+        <affiliator_commits_to_portfolio_projects>102116</affiliator_commits_to_portfolio_projects>
+        <affiliators_commiting_projects>130</affiliators_commiting_projects>
+        <outside_projects>341</outside_projects>
+        <outside_projects_commits>57494</outside_projects_commits>
+        <affiliators_committing_to_outside_projects>50</affiliators_committing_to_outside_projects>
+      </infographic_details>
+      <portfolio_projects>
+        <project>
+          <name>Apache HTTP Server</name>
+          <activity>Very High </activity>
+          <primary_language>c</primary_language>
+          <i_use_this>9508</i_use_this>
+          <community_rating>4.5</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>2108</commits>
+            <change_in_commits>-707</change_in_commits>
+            <percentage_change_in_commits>25.115452930728242</percentage_change_in_commits>
+            <contributors>30</contributors>
+            <change_in_contributors>-1</change_in_contributors>
+            <percentage_change_in_committers>3.225806451612903</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache Subversion</name>
+          <activity>High </activity>
+          <primary_language>c</primary_language>
+          <i_use_this>8506</i_use_this>
+          <community_rating>4.2</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>668</commits>
+            <change_in_commits>-373</change_in_commits>
+            <percentage_change_in_commits>35.83093179634966</percentage_change_in_commits>
+            <contributors>14</contributors>
+            <change_in_contributors>-4</change_in_contributors>
+            <percentage_change_in_committers>22.22222222222222</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache OpenOffice</name>
+          <activity> Not Available</activity>
+          <primary_language>java</primary_language>
+          <i_use_this>4370</i_use_this>
+          <community_rating>4.0</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>114</commits>
+            <change_in_commits>-12</change_in_commits>
+            <percentage_change_in_commits>9.523809523809524</percentage_change_in_commits>
+            <contributors>8</contributors>
+            <change_in_contributors>2</change_in_contributors>
+            <percentage_change_in_committers>33.33333333333333</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache Tomcat</name>
+          <activity>Very High </activity>
+          <primary_language>java</primary_language>
+          <i_use_this>1668</i_use_this>
+          <community_rating>4.2</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>2816</commits>
+            <change_in_commits>-1529</change_in_commits>
+            <percentage_change_in_commits>35.189873417721515</percentage_change_in_commits>
+            <contributors>15</contributors>
+            <change_in_contributors>2</change_in_contributors>
+            <percentage_change_in_committers>15.384615384615385</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache Ant</name>
+          <activity>Moderate </activity>
+          <primary_language>java</primary_language>
+          <i_use_this>1246</i_use_this>
+          <community_rating>4.0</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>206</commits>
+            <change_in_commits>-43</change_in_commits>
+            <percentage_change_in_commits>17.269076305220885</percentage_change_in_commits>
+            <contributors>16</contributors>
+            <change_in_contributors>7</change_in_contributors>
+            <percentage_change_in_committers>77.77777777777779</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache Maven 2</name>
+          <activity> Not Available</activity>
+          <primary_language>java</primary_language>
+          <i_use_this>1161</i_use_this>
+          <community_rating>4.1</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>3298</commits>
+            <change_in_commits>281</change_in_commits>
+            <percentage_change_in_commits>9.313887968180312</percentage_change_in_commits>
+            <contributors>82</contributors>
+            <change_in_contributors>-1</change_in_contributors>
+            <percentage_change_in_committers>1.2048192771084338</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>log4j</name>
+          <activity>High </activity>
+          <primary_language>java</primary_language>
+          <i_use_this>1091</i_use_this>
+          <community_rating>4.1</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>1143</commits>
+            <change_in_commits>-1690</change_in_commits>
+            <percentage_change_in_commits>59.65407695022944</percentage_change_in_commits>
+            <contributors>44</contributors>
+            <change_in_contributors>28</change_in_contributors>
+            <percentage_change_in_committers>175.0</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>SpamAssassin</name>
+          <activity>High </activity>
+          <primary_language>perl</primary_language>
+          <i_use_this>536</i_use_this>
+          <community_rating>4.2</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>566</commits>
+            <change_in_commits>-1021</change_in_commits>
+            <percentage_change_in_commits>64.33522369250157</percentage_change_in_commits>
+            <contributors>9</contributors>
+            <change_in_contributors>1</change_in_contributors>
+            <percentage_change_in_committers>12.5</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache log4net</name>
+          <activity>Moderate </activity>
+          <primary_language>csharp</primary_language>
+          <i_use_this>368</i_use_this>
+          <community_rating>4.2</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>383</commits>
+            <change_in_commits>311</change_in_commits>
+            <percentage_change_in_commits>431.94444444444446</percentage_change_in_commits>
+            <contributors>3</contributors>
+            <change_in_contributors>1</change_in_contributors>
+            <percentage_change_in_committers>50.0</percentage_change_in_committers>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <project>
+          <name>Apache Commons Collections</name>
+          <activity> Not Available</activity>
+          <primary_language>java</primary_language>
+          <i_use_this>340</i_use_this>
+          <community_rating>4.2</community_rating>
+          <twelve_mo_activity_and_year_on_year_change>
+            <commits>29</commits>
+            <change_in_commits>-265</change_in_commits>
+            <percentage_change_in_commits>90.1360544217687</percentage_change_in_commits>
+            <contributors>5</contributors>
+            <change_in_contributors>0</change_in_contributors>
+          </twelve_mo_activity_and_year_on_year_change>
+        </project>
+        <detailed_page_url>/orgs/apache/projects</detailed_page_url>
+      </portfolio_projects>
+    </org>
+  </result>
+</response>
