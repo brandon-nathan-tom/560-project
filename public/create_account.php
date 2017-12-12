@@ -1,6 +1,7 @@
 <?php
 $login_required = false;
 $page_title = "BNT - Create Account";
+$js_files = ['/js/create_account.js'];
 
 if(!require($_SERVER['DOCUMENT_ROOT'] . '/header.php'))
 {
@@ -26,11 +27,11 @@ if(isset($_POST['username']))
         $errorCode = $accountStmt->errorInfo()[0];
         if($errorCode == 23505)
         {
-            echo "<p>The username " . htmlspecialchars($_POST['username']) . " is already taken.</p>";
+            echo "<p class=\"error\">The username " . htmlspecialchars($_POST['username']) . " is already taken.</p>";
         }
         else
         {
-            echo "<p>Could not create account (" . $accountStmt->errorInfo()[0] . "): " . htmlspecialchars($accountStmt->errorInfo()[2]) . "</p>";
+            echo "<p class=\"error\">Could not create account (" . $accountStmt->errorInfo()[0] . "): " . htmlspecialchars($accountStmt->errorInfo()[2]) . "</p>";
         }
         displayForm();
     }
@@ -60,6 +61,9 @@ function displayForm()
     <tr><td></td><td><input type="submit" value="Create Account" />
 </table>
 </form>
+<div id="validation-output">
+
+</div>
 
 <?php
 }
