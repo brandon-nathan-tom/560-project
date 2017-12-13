@@ -535,7 +535,7 @@ handle_repos(const char *repos_url, const char *org_name){
 	  SQL_TEXT("select proj_sel.id, lic_sel.id")
 	  SQL_TEXT("from proj_sel, lic_sel;");
 
-	char *download_mirror_statement[] =
+	char download_mirror_statement[] =
 	  SQL_TEXT("with proj_sel as (")
 	  SQL_TEXT("    select * from projects")
 	  SQL_TEXT("    where name = '%.40s'")
@@ -552,7 +552,7 @@ handle_repos(const char *repos_url, const char *org_name){
 	snprintf(releases_str,
 			 400,
 			 "Github release page for %s",
-			 string_name)
+			 string_name);
 
 	char *buffer = malloc(10000 * sizeof(char));
 
