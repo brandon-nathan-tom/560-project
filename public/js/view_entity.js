@@ -15,6 +15,7 @@ function setUpView(maps)
         
         // Fill sub-entity displays
         jqEntityInfo = $('#entity-info');
+        if(jqEntityInfo.length === 0) return;
         viewConfig.entityType = jqEntityInfo.attr('data-entitytype');
         viewConfig.entityId = jqEntityInfo.attr('data-entityid');
         updateSubEntities(Object.keys(viewConfig.subEntityMaps));

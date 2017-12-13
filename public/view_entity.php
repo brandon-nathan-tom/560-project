@@ -39,7 +39,7 @@ if(!$stmt->execute())
 }
 
 $entity = $stmt->fetch(PDO::FETCH_ASSOC);
-if($project === false)
+if($entity === false)
 {
     http_response_code(404);
     echo "Not found";

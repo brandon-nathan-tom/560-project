@@ -43,6 +43,18 @@ SELECT o.*, projects.name AS project_name FROM organizations o JOIN
 -- 'Organization' would be replaced with the name of the desired organization.
 SELECT p.* FROM projects p JOIN organizations o ON p.owner_id = o.id WHERE o.name='Organization';
 
+-- Given two projects, what contributors do they have in common?
+-- '1' and '2' would be replaced with the IDs of the relevant projects.
+SELECT c.* FROM contributors c JOIN (
+    (SELECT contributor_id FROM project_contributors WHERE project_id = 1)
+    INTERSECT
+    (SELECT contributor_id FROM project_contributors WHERE project_id = 2)) pc
+    ON c.id = pc.contributor_id;
+    
+-- Are there any contributors with the same name as me?
+-- '1' would be replaced with the ID of the logged in user.
+SELECT c.* FROM contributors c JOIN users u ON c.name ILIKE ('%' || u.name || '%') WHERE u.id = 1;
+
 -- "REPORT" QUERIES --
 ----------------------
 
