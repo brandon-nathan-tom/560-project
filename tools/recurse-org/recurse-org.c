@@ -459,6 +459,9 @@ handle_repos(const char *repos_url, const char *org_name){
 	if(json_is_null(homepage)){
 	  homepage = html_url;
 	  string_homepage = string_html_url;
+	}else if(string_homepage == 0 || strlen(string_homepage) == 0){
+	  homepage = html_url;
+	  string_homepage = string_html_url;
 	}
 	if(!json_is_null(html_url)){
 	  strncpy(releases, string_html_url, 10000);
