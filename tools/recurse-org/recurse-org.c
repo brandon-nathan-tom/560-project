@@ -497,7 +497,7 @@ handle_repos(const char *repos_url, const char *org_name){
 	  SQL_TEXT("    where name = '%s'")
 	  SQL_TEXT(")")
 	  SQL_TEXT("insert into projects (id, name, repo, owner_id, short_description , description)")
-	  SQL_TEXT("select watch_proj.id, '%.40s', '%.2000s', org_select.id, '%.40s', '%.2000s'")
+	  SQL_TEXT("select watch_proj.id, '%.40s', '%.2000s', org_select.id, '%.37s...', '%.2000s'")
 	  SQL_TEXT("from watch_proj, org_select;")
 	  /* add homepage */
 	  SQL_TEXT("with homepage_ins as (")
@@ -682,7 +682,7 @@ handle_org(int argc, char **argv){
 	  SQL_TEXT("    returning id")
 	  SQL_TEXT(")")
 	  SQL_TEXT("insert into organizations (id, name, homepage, short_description, description)")
-	  SQL_TEXT("select watch_org.id, '%.40s', '%.40s', '%.40s', '%.2000s'")
+	  SQL_TEXT("select watch_org.id, '%.40s', '%.40s', '%.37s...', '%.2000s'")
 	  SQL_TEXT("from watch_org")
 	  SQL_TEXT("returning id;");
 
