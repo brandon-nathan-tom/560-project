@@ -1,0 +1,52 @@
+HTTP/1.1 200 OK
+Server: GitHub.com
+Date: Mon, 11 Dec 2017 13:58:12 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1079
+Status: 200 OK
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 51
+X-RateLimit-Reset: 1513003999
+Cache-Control: public, max-age=60, s-maxage=60
+Vary: Accept
+ETag: "af1970d42abe64c1e629d065c02785de"
+Last-Modified: Fri, 20 Oct 2017 23:43:02 GMT
+X-GitHub-Media-Type: github.v3; format=json
+Access-Control-Expose-Headers: ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+Access-Control-Allow-Origin: *
+Content-Security-Policy: default-src 'none'
+Strict-Transport-Security: max-age=31536000; includeSubdomains; preload
+X-Content-Type-Options: nosniff
+X-Frame-Options: deny
+X-XSS-Protection: 1; mode=block
+X-Runtime-rack: 0.027987
+X-GitHub-Request-Id: 8D5A:2F2D:F04DA8:1D1D003:5A2E8EF4
+
+{
+  "login": "mozilla",
+  "id": 131524,
+  "url": "https://api.github.com/orgs/mozilla",
+  "repos_url": "https://api.github.com/orgs/mozilla/repos",
+  "events_url": "https://api.github.com/orgs/mozilla/events",
+  "hooks_url": "https://api.github.com/orgs/mozilla/hooks",
+  "issues_url": "https://api.github.com/orgs/mozilla/issues",
+  "members_url": "https://api.github.com/orgs/mozilla/members{/member}",
+  "public_members_url": "https://api.github.com/orgs/mozilla/public_members{/member}",
+  "avatar_url": "https://avatars2.githubusercontent.com/u/131524?v=4",
+  "description": "This technology could fall into the right hands.",
+  "name": "Mozilla",
+  "company": null,
+  "blog": "https://wiki.mozilla.org/Github",
+  "location": "Mountain View, California",
+  "email": "",
+  "has_organization_projects": true,
+  "has_repository_projects": true,
+  "public_repos": 1709,
+  "public_gists": 0,
+  "followers": 0,
+  "following": 0,
+  "html_url": "https://github.com/mozilla",
+  "created_at": "2009-09-26T08:22:18Z",
+  "updated_at": "2017-10-20T23:43:02Z",
+  "type": "Organization"
+}

@@ -44,7 +44,8 @@ CREATE TABLE contributors (
 	id	int NOT NULL REFERENCES watchables(id),
 	name	varchar(40) NOT NULL,
 	email	varchar(40) NOT NULL,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	UNIQUE(name, email)
 );
 
 CREATE TABLE licenses (
