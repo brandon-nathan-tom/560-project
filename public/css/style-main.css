@@ -40,6 +40,7 @@ body {
     border: 2px solid gray;
     border-radius: 4px;
     margin: 4px 0px;
+    overflow-y: auto;
 }
 
 table .loading-filler {

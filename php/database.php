@@ -9,16 +9,16 @@ if($dbh == null)
 //QUERIES
 
 $entityBaseSql = [
-    'project' => "SELECT p.*, o.name AS owner, (CASE WHEN uwi.user_id IS NULL THEN false ELSE true END) AS watched FROM projects p
+    'project' => "SELECT p.*, o.name AS owner, NOT(uwi.user_id IS NULL) AS watched FROM projects p
                     LEFT JOIN organizations o ON p.owner_id = o.id
                     LEFT JOIN (SELECT * FROM user_watched_items WHERE user_id = :userid) uwi
                         ON p.id = uwi.watchable_id",
-    'organization' => "SELECT o.*, COALESCE(p.num_projects, 0) AS num_projects, (CASE WHEN uwi.user_id IS NULL THEN false ELSE true END) AS watched FROM organizations o
+    'organization' => "SELECT o.*, COALESCE(p.num_projects, 0) AS num_projects, NOT(uwi.user_id IS NULL) AS watched FROM organizations o
                         LEFT JOIN (SELECT owner_id, COUNT(*) AS num_projects FROM projects GROUP BY owner_id) p
                             ON o.id = p.owner_id
                         LEFT JOIN (SELECT * FROM user_watched_items WHERE user_id = :userid) uwi
                             ON o.id = uwi.watchable_id",
-    'contributor' => "SELECT c.*, (CASE WHEN uwi.user_id IS NULL THEN false ELSE true END) AS watched FROM contributors c
+    'contributor' => "SELECT c.*, NOT(uwi.user_id IS NULL) AS watched FROM contributors c
                         LEFT JOIN (SELECT * FROM user_watched_items WHERE user_id = :userid) uwi
                             ON c.id = uwi.watchable_id"
     ];

@@ -16,8 +16,16 @@
 			data-editentity="contributor"
 			data-editproperty="email"
 			data-editid="<?php echo $entity['id']; ?>">
-			<a href="mailto:<?php echo htmlspecialchars($entity['email']); ?>">
-            <?php echo htmlspecialchars($entity['email']); ?></a>
+            <?php if(strpos($entity['email'], '@') === false)
+            {
+                echo htmlspecialchars($entity['email']);
+            }
+            else
+            {
+                echo '<a href="mailto:' . htmlspecialchars($entity['email']) . '">' .
+                    htmlspecialchars($entity['email']) . '</a>';
+                    
+            } ?>
 		</td>
     </tr>
 </tbody>
