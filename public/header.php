@@ -45,7 +45,7 @@ if(isset($js_files))
 <div id="header">
 <h1><a href="/index.php">BNT Project Tracker</a></h1>
 <?php if(isset($_SESSION['userdata'])) { ?>
-<span id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION['userdata']['nickname']); ?>! <a href="/logout.php">Log out</a></span>
+<span id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION['userdata']['name']); ?>! <a href="/logout.php">Log out</a></span>
 <?php } ?>
 <div id="nav">
     <ul>

@@ -207,5 +207,5 @@ function wrapContentsForEdit(ele)
     editable.val(editText);
     ele.addClass('autoedit-modified');
     ele.append(editable);
-    editable.width(containerWidth);
+    editable.width(Math.max(150, containerWidth));
 }

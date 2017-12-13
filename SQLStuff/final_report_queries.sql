@@ -38,6 +38,10 @@ SELECT o.*, projects.name AS project_name FROM organizations o JOIN
     (SELECT name, owner_id FROM projects
         WHERE NOT EXISTS (SELECT project_id FROM project_contributors pc WHERE pc.project_id = id)) projects
     ON o.id = projects.owner_id;
+    
+-- What projects does a given organization maintain?
+-- 'Organization' would be replaced with the name of the desired organization.
+SELECT p.* FROM projects p JOIN organizations o ON p.owner_id = o.id WHERE o.name='Organization';
 
 -- "REPORT" QUERIES --
 ----------------------
