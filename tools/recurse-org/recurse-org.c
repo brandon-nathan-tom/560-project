@@ -446,14 +446,23 @@ handle_repos(const char *repos_url, const char *org_name){
 	MACRO_json_string(description);
 	MACRO_json_string(contributors);
 	MACRO_json_string(homepage);
+	MACRO_json_string(html_url);
+	MACRO_json_string(releases_url);
+	char *releases = malloc(sizeof(char) * 10000);
   
 	MACRO_json_get_string(data, name, "name");
 	MACRO_json_get_string(data, repo, "git_url");
 	MACRO_json_get_string(data, description, "description");
 	MACRO_json_get_string(data, contributors, "contributors_url");
 	MACRO_json_get_string(data, homepage, "homepage");
+	MACRO_json_get_string(data, html_url, "html_url");
 	if(json_is_null(homepage)){
-	  MACRO_json_get_string(data, homepage, "html_url");
+	  homepage = html_url;
+	  string_homepage = string_html_url;
+	}
+	if(!json_is_null(html_url)){
+	  strncpy(releases, 10000, html_url);
+	  strcat(releases, "/releases");
 	}
 
 	json_t *license = json_object_get(data, "license");
@@ -526,6 +535,25 @@ handle_repos(const char *repos_url, const char *org_name){
 	  SQL_TEXT("select proj_sel.id, lic_sel.id")
 	  SQL_TEXT("from proj_sel, lic_sel;");
 
+	char *download_mirror_statement[] =
+	  SQL_TEXT("with proj_sel as (")
+	  SQL_TEXT("    select * from projects")
+	  SQL_TEXT("    where name = '%.40s'")
+	  SQL_TEXT("), website_insert as (")
+	  SQL_TEXT("    insert into websites (name, uri, descr)")
+	  SQL_TEXT("    values ('%.40s', '%.250s', '%.400s')")
+	  SQL_TEXT("    returning id")
+	  SQL_TEXT(")")
+	  SQL_TEXT("insert into download_mirrors (project_id, site_id)")
+	  SQL_TEXT("select proj_sel.id, website_insert.id")
+	  SQL_TEXT("from proj_sel, website_insert;");
+
+	char releases_str[400];
+	snprintf(releases_str,
+			 400,
+			 "Github release page for %s",
+			 string_name)
+
 	char *buffer = malloc(10000 * sizeof(char));
 
 	char homepage_str[400];
@@ -561,6 +589,16 @@ handle_repos(const char *repos_url, const char *org_name){
 			   lic_name);
 	  printf("%s", buffer);
 	}
+
+	snprintf(buffer,
+			 10000,
+			 download_mirror_statement,
+			 string_name,
+			 "Releases",
+			 releases,
+			 releases_str
+			 );
+	printf("%s", buffer);
 			 
 	free(buffer);
 
