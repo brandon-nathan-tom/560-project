@@ -11,7 +11,7 @@
 #define URL_SIZE 256
 
 #define SSL_OPTIONS CURLSSLOPT_NO_REVOKE
-
+#define SQL_TEXT(txt) txt "\n"
 #define check_or_complain(check, complaint, arg1, arg2)	\
   if(check){											\
 	fprintf(stderr, complaint, arg1, arg2);				\
@@ -23,13 +23,21 @@
 #define MACRO_json_get_string(thing, var, field)	\
   var = json_object_get(thing,						\
 						field);						\
-  check_or_complain(!json_is_string(var),			\
-					field " is not a string\n",		\
-					NULL, NULL);					\
-  string_ ## var = json_string_value(var);
+  if(json_is_null(var)){							\
+	string_ ## var = NULL;										\
+  } else{											\
+	check_or_complain(!json_is_string(var),			\
+					  field " is not a string\n",	\
+					  NULL, NULL);					\
+	string_ ## var = json_string_value(var);		\
+  }
 
 #define MACRO_pretty_print_string(var)			\
-  printf(#var":%s\n", string_ ## var);	
+  if(var){										\
+	printf(#var":%s\n", string_ ## var);		\
+  }else{										\
+	printf(#var":null\n");						\
+  }
 
 static int
 newline_offset(const char *text){
@@ -70,7 +78,7 @@ static char *request(const char *url)
     char *data = NULL;
     long code;
 
-	printf("requesting url:'%s'\n", url);
+	/* printf("requesting url:'%s'\n", url); */
 
     curl_global_init(CURL_GLOBAL_ALL);
     curl = curl_easy_init();
@@ -91,6 +99,11 @@ static char *request(const char *url)
 
     /* GitHub commits API v3 requires a User-Agent header */
     headers = curl_slist_append(headers, "User-Agent: niebieskitrociny");
+	
+    curl_easy_setopt(curl, CURLOPT_HTTPAUTH, (long)CURLAUTH_BASIC);
+    curl_easy_setopt(curl, CURLOPT_USERNAME, "niebieskitrociny");
+	curl_easy_setopt(curl, CURLOPT_PASSWORD, "eat40cookies");
+	
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_response);
@@ -208,15 +221,71 @@ handle_commits(int argc, char **argv){
   MACRO_print_request();\
   MACRO_clean_request();
 
+#define MACRO_json_string(var)					\
+  const char *string_ ## var;					\
+  json_t *var;
+
 int
-handle_user(const char *user_url){
-  printf("url:'%s'\n", user_url);
-  MACRO_verbose_request(user_url);
+handle_user(const char *user_url, const char *org_name){
+  MACRO_json_string(email);
+  MACRO_json_string(name);
+  /* MACRO_json_string(nickname); */
+  
+  /* printf("url:'%s'\n", user_url); */
+  MACRO_silent_request(user_url);
+  check_or_complain(!json_is_object(request_root),
+					"root is not an object\n",
+					NULL, NULL);
+  
+  MACRO_json_get_string(request_root, email, "email");
+  MACRO_json_get_string(request_root, name, "name");
+  /* MACRO_json_get_string(request_root, nickname, "login"); */
+
+  char statement[] =
+	SQL_TEXT("with watch_contrib as (")
+	SQL_TEXT("    insert into watchables")
+	SQL_TEXT("    default values")
+	SQL_TEXT("    returning id")
+	SQL_TEXT(")")
+	SQL_TEXT("insert into contributors (id, name, email)")
+	SQL_TEXT("select watch_contrib.id, '%.40s', '%.40s'")
+	SQL_TEXT("from watch_contrib")
+	SQL_TEXT("returning id;")
+	SQL_TEXT("\nwith org_select as (")
+	SQL_TEXT("select * from organizations")
+	SQL_TEXT("where name = '%s'")
+	SQL_TEXT("), contrib_select as (")
+	SQL_TEXT("select * from contributors")
+	SQL_TEXT("where name = '%s'")
+	SQL_TEXT(")")
+	SQL_TEXT("insert into org_members (org_id, contributor_id, role)")
+	SQL_TEXT("select org_select.id, contrib_select.id, 'User'")
+	SQL_TEXT("from org_select, contrib_select;");
+
+  if(string_email == NULL){
+	string_email = malloc(41 * sizeof(char));
+	snprintf(string_email, 41, "<private>");
+  }
+  
+  char *buffer = malloc(10000 * sizeof(char));
+  snprintf(buffer,
+		   10000,
+		   statement,
+		   string_name,
+		   string_email,
+		   org_name,
+		   string_name);
+  printf("%s\n", buffer);
+  free(buffer);
+  /* printf("User data collected:\n"); */
+  /* MACRO_pretty_print_string(name); */
+  /* MACRO_pretty_print_string(email); */
+  /* MACRO_pretty_print_string(nickname); */
   return 0;
 }
 
 int
-handle_members(const char *members_url){
+handle_members(const char *members_url, const char *org_name){
   MACRO_silent_request(members_url);
   /* MACRO_print_request(); */
   check_or_complain(!json_is_array(request_root),
@@ -236,7 +305,7 @@ handle_members(const char *members_url){
 					  i, NULL);
 	MACRO_json_get_string(data, login, "login");
 	MACRO_json_get_string(data, user_url, "url");
-	handle_user(string_user_url);
+	handle_user(string_user_url, org_name);
 	return 0;
   }
   return 0;
@@ -244,9 +313,7 @@ handle_members(const char *members_url){
 
 int
 handle_repos(const char *repos_url){
-  printf("skipping fetching repositories...\n");
-  return 0;
-  MACRO_silent_request(repos_url);
+  MACRO_verbose_request(repos_url);
   MACRO_print_request();
   return 0;
 }
@@ -258,15 +325,14 @@ handle_org(int argc, char **argv){
   json_t *request_root;
   json_error_t json_error;
 
-  const char *string_repos_url;
-  json_t *repos_url;
-  const char *string_members_url;
-  json_t *members_url;
-  const char *string_description;
-  json_t *description;
+  MACRO_json_string(repos_url);
+  MACRO_json_string(members_url);
+  MACRO_json_string(description);
+  MACRO_json_string(name);
+  MACRO_json_string(homepage);
   
   if(argc > 1){
-	printf("fetching organization %s...\n", argv[1]);
+	/* printf("fetching organization %s...\n", argv[1]); */
 	snprintf(url, URL_SIZE, URL_ORG, argv[1]);
 	
 	request_text = request(url);
@@ -288,7 +354,9 @@ handle_org(int argc, char **argv){
 					  "root is not an object\n",
 					  NULL, NULL);
 	
+	MACRO_json_get_string(request_root, name, "name");
 	MACRO_json_get_string(request_root, repos_url, "repos_url");
+	MACRO_json_get_string(request_root, homepage, "html_url");
 	// this has {/member} in it - useless.
 	//MACRO_json_get_string(request_root, users_url, "public_members_url");
 	MACRO_json_get_string(request_root, description, "description");
@@ -306,12 +374,36 @@ handle_org(int argc, char **argv){
 /* 	//MACRO_json_print_string(users_url); */
 /* 	MACRO_json_print_string(description); */
 
-	printf("Data collected:\n");
-	MACRO_pretty_print_string(description);
-	MACRO_pretty_print_string(members_url);
-	MACRO_pretty_print_string(repos_url);
+	/* printf("Org data collected:\n"); */
+	char statement[] =
+	  SQL_TEXT("with watch_org as (")
+	  SQL_TEXT("    insert into watchables")
+	  SQL_TEXT("    default values")
+	  SQL_TEXT("    returning id")
+	  SQL_TEXT(")")
+	  SQL_TEXT("insert into organizations (id, name, homepage, short_description, description)")
+	  SQL_TEXT("select watch_org.id, '%.40s', '%.40s', '%.40s', '%.2000s'")
+	  SQL_TEXT("from watch_org")
+	  SQL_TEXT("returning id;");
 
-	handle_members(string_members_url);
+	char *buffer = malloc(10000 * sizeof(char));
+	snprintf(buffer,
+			 10000,
+			 statement,
+			 string_name,
+			 string_homepage,
+			 string_description,
+			 string_description);
+	printf("%s\n", buffer);
+	free(buffer);
+	/* MACRO_pretty_print_string(name); */
+	/* MACRO_pretty_print_string(description); */
+	/* printf("short_description:%40s\n", string_description); */
+	/* MACRO_pretty_print_string(homepage); */
+	/* MACRO_pretty_print_string(members_url); */
+	/* MACRO_pretty_print_string(repos_url) */;
+
+	/* handle_members(string_members_url, string_name); */
 	handle_repos(string_repos_url);
 	
 	return 0;
@@ -328,11 +420,11 @@ main(int argc, char **argv) {
   /* 	fprintf(stderr, "List commits at USER's REPOSITORY.\n\n"); */
   /* 	return 2; */
   /* } */
-  for(int i = 0;
-	  i < argc;
-	  i++){
-	printf("arg[%d]:%s\n", i, argv[i]);
-  }
+  /* for(int i = 0; */
+  /* 	  i < argc; */
+  /* 	  i++){ */
+  /* 	printf("arg[%d]:%s\n", i, argv[i]); */
+  /* } */
 
   return handle_org(argc, argv);
 }
