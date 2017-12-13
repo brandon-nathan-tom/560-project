@@ -497,7 +497,7 @@ handle_repos(const char *repos_url, const char *org_name){
 	  SQL_TEXT("    where name = '%s'")
 	  SQL_TEXT(")")
 	  SQL_TEXT("insert into projects (id, name, repo, owner_id, short_description , description)")
-	  SQL_TEXT("select watch_proj.id, '%.40s', '%.2000s', org_select.id, '%.37s...', '%.2000s'")
+	  SQL_TEXT("select watch_proj.id, '%.40s', '%.2000s', org_select.id, '%.37s%s', '%.2000s'")
 	  SQL_TEXT("from watch_proj, org_select;")
 	  /* add homepage */
 	  SQL_TEXT("with homepage_ins as (")
@@ -576,7 +576,11 @@ handle_repos(const char *repos_url, const char *org_name){
 			 string_name,
 			 string_repo,
 			 cleaned_desc,
-			 cleaned_desc,
+			 cleaned_desc != NULL ?
+			 strlen(cleaned_desc) > 37 ? "..."
+			 : ""
+			 : "",
+			 cleaned_desc != NULL ? cleaned_desc : "",
 			 string_homepage,
 			 homepage_str,
 			 string_name);
@@ -627,6 +631,7 @@ handle_org(int argc, char **argv){
   MACRO_json_string(description);
   MACRO_json_string(name);
   MACRO_json_string(homepage);
+  MACRO_json_string(github_uri);
   
   if(argc > 1){
 	/* printf("fetching organization %s...\n", argv[1]); */
@@ -654,8 +659,10 @@ handle_org(int argc, char **argv){
 	MACRO_json_get_string(request_root, name, "name");
 	MACRO_json_get_string(request_root, repos_url, "repos_url");
 	MACRO_json_get_string(request_root, homepage, "blog");
+	MACRO_json_get_string(request_root, github_uri, "html_url");
 	if(json_is_null(homepage)){
-	  MACRO_json_get_string(request_root, homepage, "html_url");
+	  homepage = github_uri;
+	  string_homepage = string_github_uri;
 	}
 	// this has {/member} in it - useless.
 	//MACRO_json_get_string(request_root, users_url, "public_members_url");
@@ -682,18 +689,47 @@ handle_org(int argc, char **argv){
 	  SQL_TEXT("    returning id")
 	  SQL_TEXT(")")
 	  SQL_TEXT("insert into organizations (id, name, homepage, short_description, description)")
-	  SQL_TEXT("select watch_org.id, '%.40s', '%.40s', '%.37s...', '%.2000s'")
+	  SQL_TEXT("select watch_org.id, '%.40s', '%.40s', '%.37s%s', '%.2000s'")
 	  SQL_TEXT("from watch_org")
 	  SQL_TEXT("returning id;");
+
+	char github_website[] =
+	  SQL_TEXT("with org_sel as (")
+	  SQL_TEXT("    select * from organizations")
+	  SQL_TEXT("    where name = '%.40s'")
+	  SQL_TEXT("), website_insert as (")
+	  SQL_TEXT("    insert into websites (name, uri, descr)")
+	  SQL_TEXT("    values ('%.40s', '%.250s', '%.400s')")
+	  SQL_TEXT("    returning id")
+	  SQL_TEXT(")")
+	  SQL_TEXT("insert into watchables_sites (watchable_id, site_id)")
+	  SQL_TEXT("select org_sel.id, website_insert.id")
+	  SQL_TEXT("from org_sel, website_insert;");
 
 	char *buffer = malloc(10000 * sizeof(char));
 	snprintf(buffer,
 			 10000,
 			 statement,
+			 
 			 string_name,
 			 string_homepage,
-			 string_description,
-			 string_description);
+			 string_description != NULL ? string_description : "No Description",
+			 string_description != NULL ? strlen(string_description) > 37 ? "..." : "" : "",
+			 string_description != NULL ? string_description : "");
+	printf("%s\n", buffer);
+
+	char homepage_descr[400];
+	snprintf(homepage_descr,
+			 400,
+			 "Github Homepage for %s",
+			 string_name);
+	snprintf(buffer,
+			 10000,
+			 github_website,
+			 string_name,
+			 "Github Project",
+			 string_github_uri,
+			 homepage_descr);
 	printf("%s\n", buffer);
 	free(buffer);
 	/* MACRO_pretty_print_string(name); */
