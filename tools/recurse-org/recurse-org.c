@@ -461,7 +461,7 @@ handle_repos(const char *repos_url, const char *org_name){
 	  string_homepage = string_html_url;
 	}
 	if(!json_is_null(html_url)){
-	  strncpy(releases, 10000, html_url);
+	  strncpy(releases, string_html_url, 10000);
 	  strcat(releases, "/releases");
 	}
 
@@ -561,8 +561,14 @@ handle_repos(const char *repos_url, const char *org_name){
 			 400,
 			 "Homepage for project %s",
 			 string_name);
-	char *cleaned_desc = clean_value(string_description,
-									 strlen(string_description));
+	char *cleaned_desc;
+	if(string_description != NULL){
+	   cleaned_desc= clean_value(string_description,
+								 strlen(string_description));
+	}else{
+	  cleaned_desc = malloc(sizeof(char)*100);
+	  strcpy(cleaned_desc, "No description");
+	}
 	snprintf(buffer,
 			 10000,
 			 statement,

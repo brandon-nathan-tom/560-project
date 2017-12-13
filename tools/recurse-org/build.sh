@@ -1,1 +1,1 @@
-gcc recurse-org.c -o recurse-org -lcurl -ljansson
+gcc recurse-org.c -o recurse-org -lcurl -ljansson -g
