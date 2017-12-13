@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . '/../php/database.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../php/database.php');
 
 if(!isset($login_required)) $login_required = true;
 
@@ -32,7 +32,7 @@ if(isset($js_files))
     <?php
     foreach($css_files_master as $css_file)
     {
-    echo "<link rel='stylesheet' type='text/css' href='{$css_file}' />\r\n";
+        echo "<link rel='stylesheet' type='text/css' href='{$css_file}' />\r\n";
     }
     foreach($js_files_master as $js_file)
     {
@@ -44,4 +44,14 @@ if(isset($js_files))
 <body>
 <div id="header">
 <h1><a href="/index.php">BNT Project Tracker</a></h1>
+<?php if(isset($_SESSION['userdata'])) { ?>
+<span id="welcome-message">Welcome, <?php echo htmlspecialchars($_SESSION['userdata']['name']); ?>! <a href="/logout.php">Log out</a></span>
+<?php } ?>
+<div id="nav">
+    <ul>
+        <li><a href="/organizations.php">Organizations</a></li>
+        <li><a href="/projects.php">Projects</a></li>
+        <li><a href="/contributors.php">Contributors</a></li>
+    </ul>
+</div>
 </div>

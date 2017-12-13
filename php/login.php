@@ -37,9 +37,22 @@ function tryLogin($dbh, $username, $password)
 <html>
 <head>
     <title>Login - Project Tracker</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+        #login-container {
+            text-align: left;
+            display: inline-block;
+            border: 2px solid gray;
+            padding: 4px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 
 <body>
+<div id="login-container">
 <form method="post">
 <table>
 <tbody>
@@ -50,6 +63,7 @@ function tryLogin($dbh, $username, $password)
 </tbody>
 </table>
 </form>
+</div>
 </body>
 
 <?php

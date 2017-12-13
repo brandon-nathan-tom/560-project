@@ -1,4 +1,83 @@
 body {
+    font-family: Verdana, Geneva, sans-serif;
     width: 80%;
     margin: 0px auto;
+}
+
+#header {
+    margin: 10px 0;
+}
+
+#header h1 {
+    display: inline;
+}
+
+#welcome-message {
+    float: right;
+}
+
+#header ul {
+    padding: 0;
+}
+
+#header ul li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+#header a, #header a:visited, a.no-visit, a.no-visit:visited {
+    color: blue;
+}
+
+.entity-title {
+    display: inline-block;
+}
+
+.quick-view-container {
+    height: 400px;
+    display: inline-block;
+    padding: 4px;
+    border: 2px solid gray;
+    border-radius: 4px;
+    margin: 4px 0px;
+    overflow-y: auto;
+    max-width: 48%;
+}
+
+table .loading-filler {
+    text-align: center;
+}
+
+table.stripe {
+    border-collapse: collapse;
+}
+
+table.stripe td, table.stripe th {
+    padding: 2px 6px;
+}
+
+table.stripe > thead > tr {
+    background-color: midnightblue;
+    color: whitesmoke;
+}
+
+table.stripe > tbody > tr:nth-of-type(even) {
+    background-color: lightgray;
+}
+
+table.stripe > tbody > tr:hover > td {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+table.stripe > thead a, table.stripe > thead a:visited
+{
+	color: lightgray;
+}
+
+.error {
+	color: red;
+}
+
+#short-description {
+	font-style: italic;
 }
