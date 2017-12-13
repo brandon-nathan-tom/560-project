@@ -87,9 +87,13 @@ function removeWatch(event)
 
 function makeEmailLink(row)
 {
-    return $('<a></a>')
-            .attr('href', 'mailto:' + row.email)
-            .text(row.email);
+    if(row.email.includes('@'))
+    {
+        return $('<a></a>')
+                .attr('href', 'mailto:' + row.email)
+                .text(row.email);
+    }
+    else return row.email;
 }
 
 function makeHomepageLink(row)
