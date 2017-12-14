@@ -91,6 +91,7 @@ function getAutoSearchChangeHandler(updateHandler)
 
 function doAutoSearch(entity, updateHandler)
 {
+    displayTableLoading($(`table[data-searchentity=${entity}`));
     let searchData = { type: entity };
     $(`input[data-searchentity="${entity}"]`).each((index, ele) => {
         if(ele.value !== '')

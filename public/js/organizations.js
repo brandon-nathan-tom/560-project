@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
 function updateOrgsHandler(data)
 {
-    fillTable($('#orgs-table'), data, { name: makeOrganizationLink, email: makeEmailLink, watch: makeWatchControl });
+    fillTable($('#orgs-table'), data, { name: makeOrganizationLink, homepage: makeHomepageLink, email: makeEmailLink, watch: makeWatchControl });
 }
 
 function makeOrganizationLink(row)
@@ -13,6 +13,13 @@ function makeOrganizationLink(row)
     return $('<a></a>')
             .attr('href', '/view_entity.php?type=organization&id=' + row.id)
             .text(row.name);
+}
+
+function makeHomepageLink(row)
+{
+    return $('<a></a>')
+            .attr('href', row.homepage)
+            .text(row.homepage);
 }
 
 function makeEmailLink(row)
